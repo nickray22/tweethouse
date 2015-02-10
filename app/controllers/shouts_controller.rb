@@ -14,12 +14,14 @@ class ShoutsController < ApplicationConroller
 	end
 
 	def create
-		@shout = Shout.new(post_params)
+		@shout = Shout.new(shout_params)
 		@shout.user_id = params[:user_id]
+		@shout.save
 	end
 
 	def destroy
 		@shout.destroy
+		redirect_to:(action => :index, notice: 'Boom. Shout destroyed!') 
 	end
 
 	private
