@@ -28,7 +28,7 @@ class ShoutsController < ApplicationConroller
 		@shout = Shout.find(params[:user_id])
 
 	def shout_params
-		params.require(:shouts).permit(:body)
+		params.require(:shout).permit(:body, :user_id)
 	end
 
 end
