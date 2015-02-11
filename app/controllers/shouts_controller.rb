@@ -1,6 +1,6 @@
-class ShoutsController < ApplicationConroller
+class ShoutsController < ApplicationController
   def index
-    @shouts = Shout.all
+    @shouts = @user.shouts
   end
 
   def show
@@ -21,7 +21,7 @@ class ShoutsController < ApplicationConroller
 
   def destroy
     @shout.destroy
-    redirect_to:(action => :index, notice: 'Boom. Shout destroyed!')
+    redirect_to root_path, notice: 'Boom. Shout destroyed!'
   end
 
   private
@@ -32,5 +32,12 @@ class ShoutsController < ApplicationConroller
 
   def shout_params
     params.require(:shout).permit(:body, :user_id)
+  end
+
+  def redirect_unless_user_match
+    unless @user == current_user
+      flash[:notice] = "You cannot perform actions on #{@user.username}"
+      redirect_to :root
+    end
   end
 end
