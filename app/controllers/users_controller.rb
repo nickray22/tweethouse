@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     if current_user == @user
       @user.destroy
       redirect_to users_path, notice: "Your user was deleted!"
-    else 
+    else
       flash[:alert] = "You are only allowed to delete your account!!"
       redirect_to :root
     end
