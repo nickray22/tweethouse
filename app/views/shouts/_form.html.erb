@@ -1,9 +1,5 @@
-<%= form_for(new_user_shout_path) do |f| %>
+<%= form_for new_user_shout_path do |f| %>
 
-  <div class="field">
-    <%= f.label 'User Id' %><br>
-    <%= f.text_field :user_id %>
-  </div>
   <div class="field">
     <%= f.label 'Body' %><br>
     <%= f.text_area :body %>
