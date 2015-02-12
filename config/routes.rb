@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
+  get '/users/:user_id/followers', to: 'users#followers'
+  put '/users/:user_id/followers', to: 'users#follow'
+  delete '/users/:user_id/followers', to: 'users#unfollow'
   root to: "users#index"
   resources :users, :only => [:new, :create, :destroy, :index] do
     resources :shouts, :only => [:new, :create, :show, :destroy, :index]
