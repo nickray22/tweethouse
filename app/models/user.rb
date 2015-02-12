@@ -18,9 +18,13 @@ class User < ActiveRecord::Base
                       message: "Must be between 4 and 20 characters."}
 
 
-  def follow!(user)
-    self.following.where("relationships.followed_id => ?", user.id).first_or_create!
-  end
+  # def follow!(user)
+  #   self.following.where("relationships.followed_id => ?", user.id).first_or_create!
+  # end
+
+   def follow!(other_user)
+     self.relationships.create!(followed_id: other_user.id)
+   end
 
   def unfollow!(user)
     # NOTE: This throws an exception if we aren't following user
