@@ -1,6 +1,6 @@
 class ShoutsController < ApplicationController
   def index
-    @shouts = @user.shouts
+    @shouts = current_user.shouts
     render :index
   end
 
@@ -17,6 +17,7 @@ class ShoutsController < ApplicationController
   def create
     @shout = Shout.new(shout_params)
     @shout.user_id = params[:user_id]
+    @shout.save!
   end
 
   def destroy
